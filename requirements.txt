@@ -1,0 +1,5 @@
+Flask==0.12.1
+geopy==1.11.0
+requests==2.13.0
+twilio==6.0.0
+Werkzeug==0.12.1
