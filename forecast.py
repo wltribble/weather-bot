@@ -8,7 +8,7 @@ import requests, json
 app = Flask(__name__)
 
 # This is from api.darksky.net, and the weather gathering in this app is powered by their API
-# I have mine stored as an environment variable for safety
+# I would prefer to have mine stored as an environment variable for safety, but can't get it to work right...
 WEATHER_API_KEY = '9a97b0b77b9f03cdd16698d7489ce6e5'
 
 # Converting conversational specifiers to match the JSON file's weather breakdown
