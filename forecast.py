@@ -41,6 +41,11 @@ known_weather_details = {
     "windy": "windSpeed",
 }
 
+
+known_phone_numbers = {
+    "+16013171177": "Oxford, MS",
+}
+
 # prevent geocoder timeout!
 def do_geocode(address):
     try:
@@ -51,8 +56,13 @@ def do_geocode(address):
 
 @app.route('/', methods=['POST'])
 def sms():
-    # Gathering location data (hardcoded to Oxford because I don't know how to find a phone's current location in Python)
-    location_string = "Oxford, MS"
+    # Gathering location data (hardcoded per registered Twilio phone number because I don't know how to find a phone's current location in Python :( )
+    from_number = request.values.get('From', None)
+    if from_number in known_phone_numbers:
+        location_string = known_phone_numbers[from_number]
+    else:
+        location_string = "San Francisco, CA"
+
     location = do_geocode(location_string)
     latitude = str(location.latitude)
     longitude = str(location.longitude)
@@ -64,7 +74,6 @@ def sms():
 
     # Getting the text request information
     body = request.values.get("Body")
-    from_number = request.values.get("From")
 
     body = body.translate({ord(c): " " for c in "1234567890.,?!'-:;"}).translate({ord(c): " " for c in '"'})
     body = body.lower()
