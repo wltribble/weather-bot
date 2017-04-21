@@ -109,7 +109,7 @@ def sms():
         # Determine how to contextualize the weather data based on user input
         if readable_info_request == 'rain':
             if not actual_desired_info == None:
-                actual_desired_info = actual_desired_info
+                actual_desired_info = actual_desired_info * 100
             else:
                 actual_desired_info = 0
             message = 'The chance of rain in ' + location_string + ' is currently ' + str(actual_desired_info) + '%'
