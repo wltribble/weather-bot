@@ -54,7 +54,7 @@ def do_geocode(address):
     except GeocoderTimedOut:
         return do_geocode(address)
 
-@app.route('/', methods=['POST'])
+@app.route('/sms_weather', methods=['POST'])
 def sms():
     # Gathering location data (hardcoded per registered Twilio phone number because I don't know how to find a phone's current location in Python :( )
     from_number = request.values.get('From', None)
